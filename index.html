@@ -94,25 +94,78 @@
 
     async function sendMsg() {
       if (liff.getContext().type !== "none") {
-        await liff.sendMessages([
-          {
-            type: 'text',
-            text: 'Hello, World!'
-          },
-          {
-            "type": "image",
-            "originalContentUrl": "https://images.suttipongact.info/contents/cloudy.png",
-            "previewImageUrl": "https://images.suttipongact.info/contents/cloudy.png"
-          }
-        ])    
-        .then(() => {
-          alert("Message sent")
-          console.log('message sent');
-        })
-        .catch((err) => {
-          console.log('error', err);
-        });
-        
+        await liff.sendMessages([{
+              type: 'text',
+              text: 'Hello, World!'
+            },
+            {
+              "type": "image",
+              "originalContentUrl": "https://images.suttipongact.info/contents/cloudy.png",
+              "previewImageUrl": "https://images.suttipongact.info/contents/cloudy.png"
+            },
+            {
+              "type": "carousel",
+              "contents": [{
+                  "type": "bubble",
+                  "body": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [{
+                      "type": "text",
+                      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                      "wrap": true
+                    }]
+                  },
+                  "footer": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [{
+                      "type": "button",
+                      "style": "primary",
+                      "action": {
+                        "type": "uri",
+                        "label": "Go",
+                        "uri": "https://example.com"
+                      }
+                    }]
+                  }
+                },
+                {
+                  "type": "bubble",
+                  "body": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [{
+                      "type": "text",
+                      "text": "Hello, World!",
+                      "wrap": true
+                    }]
+                  },
+                  "footer": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [{
+                      "type": "button",
+                      "style": "primary",
+                      "action": {
+                        "type": "uri",
+                        "label": "Go",
+                        "uri": "https://example.com"
+                      }
+                    }]
+                  }
+                }
+              ]
+            }
+          ])
+          .then(() => {
+            alert("Message sent")
+            console.log('message sent');
+          })
+          .catch((err) => {
+            console.log('error', err);
+          });
+
       }
     }
 
