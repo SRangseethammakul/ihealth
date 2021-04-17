@@ -94,30 +94,20 @@
 
     async function sendMsg() {
       if (liff.getContext().type !== "none") {
-        await liff.sendMessages([{
-            "type": "sticker",
-            "stickerId": 1,
-            "packageId": 1
-          },
+        await liff.sendMessages([
           {
-            "type": "bubble",
-            "body": { 
-              "type": "box",
-              "layout": "horizontal",
-              "contents": [ 
-                {
-                  "type": "text",
-                  "text": "Hello,"
-                },
-                {
-                  "type": "text",
-                  "text": "World!"
-                }
-              ]
-            }
+            type: 'text',
+            text: 'Hello, World!'
           }
-        ])
-        alert("Message sent")
+        ])    
+        .then(() => {
+          alert("Message sent")
+          console.log('message sent');
+        })
+        .catch((err) => {
+          console.log('error', err);
+        });
+        
       }
     }
 
