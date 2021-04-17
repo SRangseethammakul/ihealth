@@ -1,10 +1,12 @@
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
   <title>My LIFF App</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <p id="os"><b>OS:</b> </p>
   <p id="language"><b>Language:</b> </p>
@@ -53,12 +55,10 @@
     }
 
     async function shareMsg() {
-      await liff.shareTargetPicker([
-        {
-          type: "text",
-          text: "This message was sent by ShareTargetPicker"
-        }
-      ])
+      await liff.shareTargetPicker([{
+        type: "text",
+        text: "This message was sent by ShareTargetPicker"
+      }])
     }
 
     function logOut() {
@@ -74,7 +74,7 @@
       const result = await liff.scanCode()
       document.getElementById("scanCode").append(result.value)
     }
-    
+
     function openWindow() {
       liff.openWindow({
         url: "https://line.me",
@@ -94,19 +94,23 @@
 
     async function sendMsg() {
       if (liff.getContext().type !== "none") {
-        await liff.sendMessages([
+        await liff.sendMessages([{
+            "type": "sticker",
+            "stickerId": 1,
+            "packageId": 1
+          },
           {
-            "type": "bubble", // ①
-            "body": { // ②
-              "type": "box", // ③
-              "layout": "horizontal", // ④
-              "contents": [ // ⑤
+            "type": "bubble",
+            "body": { 
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [ 
                 {
-                  "type": "text", // ⑥
+                  "type": "text",
                   "text": "Hello,"
                 },
                 {
-                  "type": "text", // ⑥
+                  "type": "text",
                   "text": "World!"
                 }
               ]
@@ -135,7 +139,7 @@
       document.getElementById("displayName").append(profile.displayName)
       document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
     }
-    
+
     function getEnvironment() {
       document.getElementById("os").append(liff.getOS());
       document.getElementById("language").append(liff.getLanguage());
@@ -164,9 +168,12 @@
           liff.login()
         }
       })
-      await liff.init({ liffId: "1655804673-q9X5v3KA" })
+      await liff.init({
+        liffId: "1655804673-q9X5v3KA"
+      })
     }
     main()
   </script>
 </body>
+
 </html>
